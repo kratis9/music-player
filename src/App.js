@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import AudioPlayer from "./components/player/Player"
-import Search from "./components/Search"
+import AudioPlayer from "./components/audio-player/AudioPlayer"
+import Search from "./components/search/Search"
 import { getArtistSongs } from "./services/api"
-import Tracks from "./components/Tracks"
+import Tracks from "./components/tracks/Tracks"
+import TrackDetail from "./components/tracks/TrackDetail"
 
 import "./App.css"
 const App = () => {
@@ -40,7 +41,9 @@ const App = () => {
         )}
         {selectedTrack && <AudioPlayer track={selectedTrack} />}
       </div>
-      <div className="hidden md:block h-1/6 md:w-6/12 "></div>
+      <div className="hidden md:block h-1/6 md:w-6/12 ">
+        <TrackDetail selectedTrack={selectedTrack} />
+      </div>
     </div>
   )
 }
