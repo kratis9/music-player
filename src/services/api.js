@@ -23,7 +23,7 @@ export const getSongsByAlbum = async (albumId) => {
   let resData
   resData = await axios
     .get(
-      `https://cors.bridged.cc/https://itunes.apple.com/search?id=${albumId}&entity=song&media=music`
+      `https://cors.bridged.cc/https://itunes.apple.com/lookup?id=${albumId}&entity=song`
     )
     .then((data) => {
       resData = data

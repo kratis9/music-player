@@ -50,12 +50,14 @@ input[type="range"] {
 .audio-controls .next svg {
   width: 35px;
   height: 35px;
+  outline: none;
 }
 
 .audio-controls .play svg,
 .audio-controls .pause svg {
   height: 40px;
   width: 40px;
+  outline: none;
 }
 
 .audio-controls path {
