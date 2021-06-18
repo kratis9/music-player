@@ -7,17 +7,16 @@ import "../../App.css"
  * Read the blog post here:
  * https://letsbuildui.dev/articles/building-an-audio-player-with-react-hooks
  */
-const AudioPlayer = ({ tracks }) => {
+const AudioPlayer = ({ track }) => {
   // State
-  const [trackIndex, setTrackIndex] = useState(0)
   const [trackProgress, setTrackProgress] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
 
   // Destructure for conciseness
-  const { title, artist, image, audioSrc } = tracks[trackIndex]
+  const { previewUrl } = track
 
   // Refs
-  const audioRef = useRef(new Audio(audioSrc))
+  const audioRef = useRef(new Audio(previewUrl))
   const intervalRef = useRef()
   const isReady = useRef(false)
 
@@ -59,21 +58,9 @@ const AudioPlayer = ({ tracks }) => {
     startTimer()
   }
 
-  const toPrevTrack = () => {
-    if (trackIndex - 1 < 0) {
-      setTrackIndex(tracks.length - 1)
-    } else {
-      setTrackIndex(trackIndex - 1)
-    }
-  }
+  const toPrevTrack = () => {}
 
-  const toNextTrack = () => {
-    if (trackIndex < tracks.length - 1) {
-      setTrackIndex(trackIndex + 1)
-    } else {
-      setTrackIndex(0)
-    }
-  }
+  const toNextTrack = () => {}
 
   useEffect(() => {
     if (isPlaying) {
@@ -88,7 +75,7 @@ const AudioPlayer = ({ tracks }) => {
   useEffect(() => {
     audioRef.current.pause()
 
-    audioRef.current = new Audio(audioSrc)
+    audioRef.current = new Audio(previewUrl)
     setTrackProgress(audioRef.current.currentTime)
 
     if (isReady.current) {
@@ -99,7 +86,7 @@ const AudioPlayer = ({ tracks }) => {
       // Set the isReady ref as true for the next pass
       isReady.current = true
     }
-  }, [trackIndex])
+  }, [track])
 
   useEffect(() => {
     // Pause and clean up on unmount

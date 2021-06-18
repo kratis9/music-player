@@ -15,7 +15,7 @@ const Search = ({ searchTextChange }) => {
   }
 
   return (
-    <div className="my-5 mx-auto">
+    <div className="m-3 flex justify-center">
       <input
         className="w-10/12"
         type="text"

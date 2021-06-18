@@ -1,34 +1,26 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
-import Song from "./Track"
+import Track from "./Track"
 
-const Tracks = (props) => {
-  console.log(props)
-
+const Tracks = ({ tracks, trackSelection }) => {
   const [selectedTrack, setTrack] = useState(null)
-  const [isSelected, setSelection] = useState(false)
 
-  const handleTrackSelection = (track) => {
-    console.log("object")
-    setTrack(track)
-    props.trackSelection(selectedTrack)
-    setSelection()
-  }
+  useEffect(() => {
+    trackSelection(selectedTrack)
+  }, [selectedTrack])
 
   return (
     <div className="w-full">
-      {!props.tracks ? (
+      {!tracks ? (
         <h1>No tracks Found</h1>
       ) : (
-        props.tracks &&
-        props.tracks.map((track) => {
+        tracks &&
+        tracks.map((track) => {
           return (
-            <Song
+            <Track
               key={track.trackId}
               track={track}
-              trackSelection={() => {
-                handleTrackSelection(track)
-              }}
+              trackSelection={() => setTrack(track)}
             />
           )
         })
