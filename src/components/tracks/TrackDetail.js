@@ -8,7 +8,7 @@ const TrackDetail = ({ tracks, selectedTrack }) => {
     const getData = async () => {
       try {
         const data = await getSongsByAlbum(selectedTrack.collectionId)
-        console.log(data)
+      
         setAlbum(data)
       } catch (err) {
         console.log(err)

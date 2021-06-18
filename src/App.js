@@ -40,7 +40,9 @@ const App = () => {
           <Tracks tracks={tracks} trackSelection={handleTrackSelection} />
         )}
         {selectedTrack && (
-          <AudioPlayer className="visible md:invisible" track={selectedTrack} />
+          <div className="visible md:invisible">
+            <AudioPlayer track={selectedTrack} />
+          </div>
         )}
       </div>
       <div className="hidden md:block h-1/6 md:w-6/12 ">
