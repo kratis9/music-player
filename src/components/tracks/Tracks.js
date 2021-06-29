@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 
 import Track from "./Track"
 
 const Tracks = ({ tracks, trackSelection }) => {
-  const [selectedTrack, setTrack] = useState(null)
-
-  useEffect(() => {
-    trackSelection(selectedTrack)
-  }, [selectedTrack])
-
   return (
     <div className="w-full">
       {!tracks ? (
@@ -20,7 +14,7 @@ const Tracks = ({ tracks, trackSelection }) => {
             <Track
               key={track.trackId}
               track={track}
-              trackSelection={() => setTrack(track)}
+              trackSelection={() => trackSelection(track)}
             />
           )
         })

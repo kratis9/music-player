@@ -8,7 +8,7 @@ const TrackDetail = ({ tracks, selectedTrack }) => {
     const getData = async () => {
       try {
         const data = await getSongsByAlbum(selectedTrack.collectionId)
-      
+
         setAlbum(data)
       } catch (err) {
         console.log(err)
@@ -21,7 +21,7 @@ const TrackDetail = ({ tracks, selectedTrack }) => {
     <div className="w-full h-full m-10">
       {selectedTrack && (
         <div className="AudioPlayer">
-          <figure class="flex justify-center mb-5">
+          <figure className="flex justify-center mb-5">
             <img
               className="object-contain object-center rounded-lg"
               height="150px"

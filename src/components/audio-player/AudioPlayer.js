@@ -31,9 +31,7 @@ const AudioPlayer = ({ track }) => {
     clearInterval(intervalRef.current)
 
     intervalRef.current = setInterval(() => {
-      if (audioRef.current.ended) {
-        toNextTrack()
-      } else {
+      if (!audioRef.current.ended) {
         setTrackProgress(audioRef.current.currentTime)
       }
     }, [1000])
@@ -59,11 +57,13 @@ const AudioPlayer = ({ track }) => {
   const toNextTrack = () => {}
 
   useEffect(() => {
+    const ref = audioRef.current
+   
     if (isPlaying) {
-      audioRef.current.play()
+      ref.play()
       startTimer()
-    } else {
-      audioRef.current.pause()
+    } else if (!ref.paused) {
+      ref.pause()
     }
   }, [isPlaying])
 

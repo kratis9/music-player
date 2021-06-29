@@ -6,10 +6,10 @@ import Tracks from "./components/tracks/Tracks"
 import TrackDetail from "./components/tracks/TrackDetail"
 
 import "./App.css"
+
 const App = () => {
   const [tracks, setTracks] = useState(null)
   const [artistName, setArtistName] = useState(null)
-
   const [selectedTrack, setTrackSelection] = useState(null)
 
   React.useEffect(() => {
