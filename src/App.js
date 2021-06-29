@@ -11,33 +11,28 @@ const App = () => {
   const [tracks, setTracks] = useState(null)
   const [artistName, setArtistName] = useState(null)
   const [selectedTrack, setTrackSelection] = useState(null)
+  
+  const getData = async () => {
+    try {
+      const data = await getSongsByArtist(artistName)
+      setTracks(data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await getSongsByArtist(artistName)
-        setTracks(data)
-      } catch (err) {
-        console.log(err)
-      }
-    }
     getData()
   }, [artistName])
-
-  const handleSearchTextChange = (searchText) => {
-    setArtistName(searchText)
-  }
-
-  const handleTrackSelection = (track) => {
-    setTrackSelection(track)
-  }
 
   return (
     <div className="bg-gray-200 flex">
       <div className="m-4 md:w-4/12 md:border-r border-gray-400">
-        <Search searchTextChange={handleSearchTextChange} />
-
-        <Tracks tracks={tracks} trackSelection={handleTrackSelection} />
+        <Search searchTextChange={(searchText) => setArtistName(searchText)} />
+        <Tracks
+          tracks={tracks}
+          trackSelection={(track) => setTrackSelection(track)}
+        />
 
         {selectedTrack && (
           <div className="visible md:invisible">

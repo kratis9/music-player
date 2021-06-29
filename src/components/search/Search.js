@@ -10,17 +10,13 @@ const Search = ({ searchTextChange }) => {
     return () => clearInterval(timer)
   }, [searchText])
 
-  const searchHandler = (event) => {
-    setSearchText(event.target.value)
-  }
-
   return (
     <div className="m-3 flex justify-center">
       <input
         className="w-10/12"
         type="text"
         placeholder="Search artist"
-        onKeyDown={searchHandler}
+        onKeyDown={(event) => setSearchText(event.target.value)}
       />
     </div>
   )

@@ -1,19 +1,20 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import AudioPlayer from "../audio-player/AudioPlayer"
 import { getSongsByAlbum } from "../../services/api"
 
-const TrackDetail = ({ tracks, selectedTrack }) => {
+const TrackDetail = ({ selectedTrack }) => {
   const [album, setAlbum] = useState(null)
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        const data = await getSongsByAlbum(selectedTrack.collectionId)
 
-        setAlbum(data)
-      } catch (err) {
-        console.log(err)
-      }
+  const getData = async () => {
+    try {
+      const data = await getSongsByAlbum(selectedTrack.collectionId) // Album ID
+      setAlbum(data)
+    } catch (err) {
+      console.log(err)
     }
+  }
+
+  useEffect(() => {
     getData()
   }, [selectedTrack])
 
