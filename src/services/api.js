@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export const getArtistSongs = async (artistName) => {
+export const getSongsByArtist = async (artistName) => {
   let resData
   resData = await axios
     .get(
@@ -15,6 +15,7 @@ export const getArtistSongs = async (artistName) => {
       console.log(
         `https://itunes.apple.com/search?term=${artistName}&country=us&entity=musicArtist&limit=10`
       )
+      return resData
     })
   return resData
 }
@@ -34,6 +35,7 @@ export const getSongsByAlbum = async (albumId) => {
       console.log(
         `https://cors.bridged.cc/https://itunes.apple.com/search?id=${albumId}&entity=song&media=music`
       )
+      return resData
     })
   return resData
 }

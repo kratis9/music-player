@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import AudioPlayer from "./components/audio-player/AudioPlayer"
 import Search from "./components/search/Search"
-import { getArtistSongs } from "./services/api"
+import { getSongsByArtist } from "./services/api"
 import Tracks from "./components/tracks/Tracks"
 import TrackDetail from "./components/tracks/TrackDetail"
 
@@ -15,7 +15,7 @@ const App = () => {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const data = await getArtistSongs(artistName)
+        const data = await getSongsByArtist(artistName)
         setTracks(data)
       } catch (err) {
         console.log(err)
@@ -36,9 +36,9 @@ const App = () => {
     <div className="bg-gray-200 flex">
       <div className="m-4 md:w-4/12 md:border-r border-gray-400">
         <Search searchTextChange={handleSearchTextChange} />
-        {tracks && (
-          <Tracks tracks={tracks} trackSelection={handleTrackSelection} />
-        )}
+
+        <Tracks tracks={tracks} trackSelection={handleTrackSelection} />
+
         {selectedTrack && (
           <div className="visible md:invisible">
             <AudioPlayer track={selectedTrack} />
